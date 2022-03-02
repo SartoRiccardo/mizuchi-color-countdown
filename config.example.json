@@ -1,0 +1,17 @@
+{
+  "config": {
+    "token": "discord-token",
+    "prefix": "-"
+  },
+
+  "message": {
+    "template": "It has been **{}** days since Mizuchi has been revealed, and we still don't know her palette.",
+    "channel_id": null,
+    "message_id": null
+  },
+
+  "emote": {
+    "template": "MizuchiFumoWaitDay{}",
+    "id": null
+  }
+}
