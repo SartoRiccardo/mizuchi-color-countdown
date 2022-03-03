@@ -26,7 +26,7 @@ class Countdown(commands.Cog):
     @staticmethod
     def get_days_passed():
         difference = datetime.now() - datetime.strptime(Countdown.REVEAL_DATE, "%d %B %Y")
-        return int(difference.total_seconds() / (60*60*24))
+        return int(difference.total_seconds() / (60*60*24)) + 1
 
     # EMOTE #
 
