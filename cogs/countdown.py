@@ -6,6 +6,7 @@ import re
 from datetime import datetime
 import aiofiles
 from discord.ext import commands
+import traceback
 
 
 SUCCESS_REACTION = '\N{THUMBS UP SIGN}'
@@ -32,6 +33,14 @@ class Countdown(commands.Cog):
 
     @tasks.loop(seconds=60*60)
     async def update_emote(self):
+        try:
+            await self.update_emote_wrapped()
+        except Exception as exc:
+            print("EXCEPTION WHILE UPDATING EMOTE:")
+            print(traceback.format_exc())
+            print("\n"*3)
+
+    async def update_emote_wrapped(self):
         fin = await aiofiles.open("config.json")
         data = json.loads(await fin.read())["emote"]
         await fin.close()
@@ -78,6 +87,14 @@ class Countdown(commands.Cog):
 
     @tasks.loop(seconds=60*60)
     async def update_message(self):
+        try:
+            await self.update_message_wrapped()
+        except Exception as exc:
+            print("EXCEPTION WHILE UPDATING MESSAGE:")
+            print(traceback.format_exc())
+            print("\n"*3)
+
+    async def update_message_wrapped(self):
         fin = await aiofiles.open("config.json")
         config = json.loads(await fin.read())
         data = config["message"]
